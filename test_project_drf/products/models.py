@@ -89,3 +89,10 @@ class Products(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_image_urls(self):
+        return [
+            self.image_small.url if self.image_small else None,
+            self.image_medium.url if self.image_medium else None,
+            self.image_large.url if self.image_large else None
+        ]
