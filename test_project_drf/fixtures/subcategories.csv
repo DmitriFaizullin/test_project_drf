@@ -1,0 +1,11 @@
+id,category_id,name,slug
+1,1,Смартфоны,smartphones
+2,1,Ноутбуки,laptops
+3,1,Наушники,headphones
+4,2,Мужская одежда,men-clothing
+5,2,Женская одежда,women-clothing
+6,3,Художественная литература,fiction
+7,3,Научная литература,science
+8,4,Диваны,sofas
+9,4,Столы,tables
+10,5,Фитнес,fitness

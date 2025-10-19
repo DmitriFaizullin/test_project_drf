@@ -1,0 +1,4 @@
+id,username,email,password,first_name,last_name
+1,ivanov,ivanov@example.com,pbkd$password123,Иван,Иванов
+2,petrov,petrov@example.com,pbkd$password123,Петр,Петров
+3,sidorova,sidorova@example.com,pbkd$password123,Мария,Сидорова

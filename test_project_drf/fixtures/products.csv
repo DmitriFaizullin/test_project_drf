@@ -1,0 +1,11 @@
+id,subcategory_id,name,slug,price
+1,1,iPhone 14,iphone-14,79999.00
+2,1,Samsung Galaxy S23,samsung-galaxy-s23,69999.00
+3,2,MacBook Pro 16,macbook-pro-16,199999.00
+4,2,ASUS ROG Strix,asus-rog-strix,129999.00
+5,3,AirPods Pro,airpods-pro,24999.00
+6,3,Sony WH-1000XM4,sony-wh1000xm4,29999.00
+7,4,Джинсы Levi's,levi-jeans,4999.00
+8,5,Платье коктейльное,cocktail-dress,8999.00
+9,6,Война и мир,war-and-peace,899.00
+10,7,Python для начинающих,python-for-beginners,1599.00

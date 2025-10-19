@@ -1,6 +1,31 @@
 from rest_framework import serializers
-from products.models import Products
+from products.models import Category, Products, Subcategory
 from users.models import Cart
+
+
+class SubcategorySerializer(serializers.ModelSerializer):
+    """Сериализатор для подкатегорий"""
+    image = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Subcategory
+        fields = ('name', 'slug', 'image')
+
+    def get_image(self, obj):
+        return obj.get_image_url()
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    """Сериализатор для категорий с подкатегориями"""
+    subcategories = SubcategorySerializer(many=True, read_only=True)
+    image = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Category
+        fields = ('name', 'slug', 'image', 'subcategories')
+
+    def get_image(self, obj):
+        return obj.get_image_url()
 
 
 class ProductSerializer(serializers.ModelSerializer):

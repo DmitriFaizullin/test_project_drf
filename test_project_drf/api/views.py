@@ -1,9 +1,11 @@
 from rest_framework import viewsets, permissions
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from products.models import Products
+
+from products.models import Category, Products
 from users.models import Cart
 from .serializers import (CartUpdateSerializer,
+                          CategorySerializer,
                           ProductSerializer,
                           CartAddSerializer,
                           CartDetailSerializer)
@@ -16,6 +18,12 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
         'subcategory__category'
     ).all()
     serializer_class = ProductSerializer
+
+
+class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
+    """ViewSet для просмотра категорий с подкатегориями."""
+    queryset = Category.objects.prefetch_related('subcategories').all()
+    serializer_class = CategorySerializer
 
 
 class CartViewSet(viewsets.ModelViewSet):

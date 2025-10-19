@@ -20,6 +20,9 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_image_url(self):
+        return self.image.url if self.image else None
+
 
 class Subcategory(models.Model):
     """Модель для подкатегорий товаров."""
@@ -45,6 +48,9 @@ class Subcategory(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_image_url(self):
+        return self.image.url if self.image else None
 
 
 class Products(models.Model):
