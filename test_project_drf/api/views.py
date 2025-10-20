@@ -27,6 +27,7 @@ class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class CartViewSet(viewsets.ModelViewSet):
+    """ViewSet для управление корзиной."""
     permission_classes = (permissions.IsAuthenticated,)
     serializer_class = CartAddSerializer
 

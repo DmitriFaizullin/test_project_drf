@@ -2,19 +2,14 @@ from django.db import models
 from django.core.validators import MinValueValidator
 
 
-class Category(models.Model):
-    """Модель для категорий товаров."""
+class BaseModel(models.Model):
+    """Базовая модель для категорий и подкатегорий."""
     name = models.CharField('Название', max_length=30)
     slug = models.SlugField('Слаг', max_length=30, unique=True)
-    image = models.ImageField(
-        upload_to='categories/images/',
-        null=True,
-        blank=True
-    )
+    image = None
 
     class Meta:
-        verbose_name = 'Категория'
-        verbose_name_plural = 'Категории'
+        abstract = True
         ordering = ('name',)
 
     def __str__(self):
@@ -24,7 +19,20 @@ class Category(models.Model):
         return self.image.url if self.image else None
 
 
-class Subcategory(models.Model):
+class Category(BaseModel):
+    """Модель для категорий товаров."""
+    image = models.ImageField(
+        upload_to='categories/images/',
+        null=True,
+        blank=True
+    )
+
+    class Meta(BaseModel.Meta):
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+
+
+class Subcategory(BaseModel):
     """Модель для подкатегорий товаров."""
     category = models.ForeignKey(
         Category,
@@ -32,8 +40,6 @@ class Subcategory(models.Model):
         related_name='subcategories',
         verbose_name='Подкатегория'
     )
-    name = models.CharField('Название', max_length=30)
-    slug = models.SlugField('Слаг', max_length=30, unique=True)
     image = models.ImageField(
         'Изображение',
         upload_to='subcategories/images/',
@@ -41,16 +47,9 @@ class Subcategory(models.Model):
         blank=True
     )
 
-    class Meta:
+    class Meta(BaseModel.Meta):
         verbose_name = 'Подкатегория'
         verbose_name_plural = 'Подкатегории'
-        ordering = ('name',)
-
-    def __str__(self):
-        return self.name
-
-    def get_image_url(self):
-        return self.image.url if self.image else None
 
 
 class Products(models.Model):

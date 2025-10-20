@@ -9,6 +9,7 @@ User = get_user_model()
 
 @pytest.mark.django_db
 class TestUserRegistration:
+    """Тесты для пользователя."""
     URL_SIGNUP = '/api/users/'
     URL_TOKEN = '/api/token/login/'
 

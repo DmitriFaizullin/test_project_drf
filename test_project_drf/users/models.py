@@ -1,11 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-
 from django.core.validators import MinValueValidator
+
 from products.models import Products
 
 
 class CustomUser(AbstractUser):
+    """Кастомная модель пользователя."""
     cart_products = models.ManyToManyField(
         Products,
         through='Cart',
@@ -22,6 +23,7 @@ class CustomUser(AbstractUser):
 
 
 class Cart(models.Model):
+    "Модель корзины товаров."
     user = models.ForeignKey(
         CustomUser,
         on_delete=models.CASCADE,
