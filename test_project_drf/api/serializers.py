@@ -81,10 +81,11 @@ class CartUpdateSerializer(serializers.ModelSerializer):
 class CartDetailSerializer(serializers.ModelSerializer):
     product = ProductSerializer(read_only=True)
     total_price = serializers.SerializerMethodField()
+    id = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Cart
-        fields = ('product', 'quantity', 'total_price')
+        fields = ('id', 'product', 'quantity', 'total_price')
 
     def get_total_price(self, obj):
         return obj.quantity * obj.product.price

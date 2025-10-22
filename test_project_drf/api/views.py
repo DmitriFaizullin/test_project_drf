@@ -30,6 +30,7 @@ class CartViewSet(viewsets.ModelViewSet):
     """ViewSet для управление корзиной."""
     permission_classes = (permissions.IsAuthenticated,)
     serializer_class = CartAddSerializer
+    http_method_names = ['get', 'post', 'delete', 'put']
 
     def get_queryset(self):
         if self.action == 'list':
